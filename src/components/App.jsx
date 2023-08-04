@@ -5,14 +5,14 @@ import { ContactList } from "./ContactList/ContactList";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContactsThunk } from 'redux/operations';
-import { selectContacts, selectFilter, selectFilteredContacts } from 'redux/selectors';
-
+import { selectFilter, selectFilteredContacts } from 'redux/selectors';
+// import { selectContacts } from 'redux/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
   // const contacts = useSelector((state) => state.contacts.contacts.items);
     // const filter = useSelector((state) => state.filter.filter);
-  const contacts = useSelector(selectContacts);
+  // const contacts = useSelector(selectContacts);
   const isLoading = useSelector((state) => state.contacts.contacts.isLoading);
   const error = useSelector((state) => state.contacts.contacts.error);
    const contactsFilteredByName = useSelector(selectFilteredContacts);
@@ -22,9 +22,6 @@ export const App = () => {
     dispatch(fetchContactsThunk());
   }, [dispatch]);
 
-  // const filteredContacts = contacts.filter(
-  //   (contact) => contact.name && contact.name.toLowerCase().includes(filter.toLowerCase())
-  // ) 
 
   return (
     <div>
@@ -43,3 +40,7 @@ export const App = () => {
     </div>
   );
 };
+
+ // const filteredContacts = contacts.filter(
+  //   (contact) => contact.name && contact.name.toLowerCase().includes(filter.toLowerCase())
+  // ) 
