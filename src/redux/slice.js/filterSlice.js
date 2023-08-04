@@ -1,4 +1,3 @@
-// import { initialState } from "./rootReducer";
 
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "redux/slice.js/contactsSlice";
@@ -13,6 +12,8 @@ export const filterSlice = createSlice({
     }
 
 })
+
+
 
 export const {setFilter} =filterSlice.actions;
 export const  filterReducer =filterSlice.reducer;

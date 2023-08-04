@@ -2,27 +2,44 @@
 import { ContactForm } from './ContactForm/ContactForm'
 import { Filter } from "./Filter/Filter";
 import { ContactList } from "./ContactList/ContactList";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchContactsThunk } from 'redux/operations';
+import { selectContacts, selectFilter, selectFilteredContacts } from 'redux/selectors';
 
 
 export const App = () => {
-  const contacts = useSelector((state) => state.contacts.contacts);
-  const filter = useSelector((state)=>state.filter.filter);
- 
-  const filteredContacts =contacts.filter(contact =>
-    contact.name && contact.name.toLowerCase().includes(filter.toLowerCase()))
+  const dispatch = useDispatch();
+  // const contacts = useSelector((state) => state.contacts.contacts.items);
+    // const filter = useSelector((state) => state.filter.filter);
+  const contacts = useSelector(selectContacts);
+  const isLoading = useSelector((state) => state.contacts.contacts.isLoading);
+  const error = useSelector((state) => state.contacts.contacts.error);
+   const contactsFilteredByName = useSelector(selectFilteredContacts);
+  const filter = useSelector(selectFilter);
 
-  return <div>
-    <h1>Phonebook</h1>
+  useEffect(() => {
+    dispatch(fetchContactsThunk());
+  }, [dispatch]);
 
-    <ContactForm contacts={contacts} />
+  // const filteredContacts = contacts.filter(
+  //   (contact) => contact.name && contact.name.toLowerCase().includes(filter.toLowerCase())
+  // ) 
 
-    <h1>Contacts</h1>
+  return (
+    <div>
+      <h1>Phonebook</h1>
+      {isLoading && !error && <b>  Loading...</b>}
+      {error && <p>{error.message}</p>}
 
-    <Filter filter={filter} />
+      <ContactForm  filteredContacts={contactsFilteredByName} />
 
-    <ContactList filteredContacts={filteredContacts} />
-  </div>
-}
+      <h1>Contacts</h1>
 
+      <Filter filter={filter} />
 
+      <ContactList filteredContacts={contactsFilteredByName} />
+   
+    </div>
+  );
+};

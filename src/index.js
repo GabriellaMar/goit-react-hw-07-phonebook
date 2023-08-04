@@ -9,10 +9,10 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <PersistGate loading={<p>loading...</p>} persistor={persistor}>
+    {/* <PersistGate loading={<p>loading...</p>} persistor={persistor}> */}
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </PersistGate>
+    {/* </PersistGate> */}
   </Provider>
 );
