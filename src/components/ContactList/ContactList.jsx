@@ -1,5 +1,6 @@
 import styles from './ContactList.module.css'
 import PropTypes from 'prop-types';
+
 import { useDispatch } from 'react-redux';
 import { deleteContactThunk } from 'redux/operations';
 
@@ -15,7 +16,7 @@ export const ContactList = ({ filteredContacts }) => {
             <ul className={styles.contactList}>
                  {filteredContacts.length === 0 && <p>There are no contacts found!</p>}
                 {filteredContacts.length > 0 && filteredContacts.map(contact => (
-                    <li className={styles.contactItem} key={contact.id}>{contact.name}: {contact.phone}
+                    <li className={styles.contactItem} key={contact.id}>{contact.name}: &nbsp;&nbsp; {contact.phone}
                         <button type="button" className={styles.deleteContactBtn}
                             onClick={ () => handleDeleteContact(contact.id)}>
                             Delete</button>
