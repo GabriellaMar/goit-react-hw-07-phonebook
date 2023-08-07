@@ -1,16 +1,15 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css'
-import { useDispatch } from "react-redux";
-// import { addContact } from "redux/slice.js/contactsSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { addContactThunk } from "redux/operations";
+import { selectFilteredContacts } from "redux/selectors";
 
 
 
-export const ContactForm =({filteredContacts})=>{
-  const dispatch = useDispatch();
-  // const contacts = useSelector((state)=>state.contacts);
-  
+export const ContactForm =()=>{
+const filteredContacts = useSelector(selectFilteredContacts);
+const dispatch = useDispatch();
 const[phone, setPhone] = useState('');
 const [name, setName] = useState('');
 
@@ -77,6 +76,4 @@ const handleSubmit = (e) => {
         </>
 }
 
-   ContactForm.propTypes ={
-    filteredContacts: PropTypes.array.isRequired,
-   }
+  

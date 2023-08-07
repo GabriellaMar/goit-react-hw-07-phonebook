@@ -29,13 +29,17 @@ export const App = () => {
       {isLoading && !error && <b>  Loading...</b>}
       {error && <p>{error.message}</p>}
 
-      <ContactForm  filteredContacts={contactsFilteredByName} />
+      <ContactForm 
+        // filteredContacts={contactsFilteredByName} 
+       />
 
       <h1>Contacts</h1>
 
       <Filter filter={filter} />
 
-      <ContactList filteredContacts={contactsFilteredByName} />
+      <ContactList 
+      // filteredContacts={contactsFilteredByName} 
+      />
    
     </div>
   );

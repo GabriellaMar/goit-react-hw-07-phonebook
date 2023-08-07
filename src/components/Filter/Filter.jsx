@@ -7,7 +7,6 @@ export const Filter = ({ filter }) => {
     const dispatch = useDispatch();
     const handleFilterChange = (e) => {
         const { value } = e.target
-        //  dispatch({ type: 'filter/setFilter', payload: value })
         dispatch(setFilter(value))
     }
     return (

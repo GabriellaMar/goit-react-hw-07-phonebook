@@ -1,11 +1,12 @@
 import styles from './ContactList.module.css'
-import PropTypes from 'prop-types';
-
-import { useDispatch } from 'react-redux';
+// import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteContactThunk } from 'redux/operations';
+import { selectFilteredContacts } from 'redux/selectors';
 
 
-export const ContactList = ({ filteredContacts }) => {
+export const ContactList = () => {
+    const filteredContacts = useSelector(selectFilteredContacts);
     const dispatch = useDispatch();
 
     const handleDeleteContact = (contactId) => {
@@ -27,6 +28,3 @@ export const ContactList = ({ filteredContacts }) => {
     )
 }
 
- ContactList.propTypes ={
-     filteredContacts: PropTypes.array.isRequired,
- }
